@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT src.main:app
+web: PYTHONPATH=src gunicorn --chdir src main:app
