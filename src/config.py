@@ -13,7 +13,7 @@ VT_API_KEY = os.environ.get("VT_API_KEY")
 
 # Initialize the GenAI Client using an environment variable
 # This prevents the API key from being exposed in source control
-API_KEY_FROM_ENV = os.environ.get("GOOGLE_API_KEY")
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 
 
 # --- GLOBAL WHITELIST ---

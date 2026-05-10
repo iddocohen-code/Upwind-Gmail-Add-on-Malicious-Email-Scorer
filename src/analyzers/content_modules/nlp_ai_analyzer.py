@@ -1,11 +1,11 @@
 # analyzers/content_modules/nlp_ai_analyzer.py
 from google import genai
 import json
-from config import API_KEY_FROM_ENV
+from config import GOOGLE_API_KEY
 
 # Initialize the GenAI Client with the dedicated API Key
 # This client handles the communication with the Gemini 2.5 infrastructure
-client = genai.Client(api_key=API_KEY_FROM_ENV)
+client = genai.Client(api_key=GOOGLE_API_KEY)
 
 def analyze(body_text):
     """
