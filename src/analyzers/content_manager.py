@@ -89,7 +89,7 @@ def evaluate_ai_and_finalize(body_text, payload_score, current_findings, technic
             
             final_score = min(payload_score, ai_score)
             
-        print(f"[BACKEND LOG] CONTENT: Final Content Score: {final_score}")
+        print(f"[BACKEND LOG] CONTENT: AI Score: {final_score}")
         return final_score, findings
 
     except Exception as e:

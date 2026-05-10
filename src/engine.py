@@ -82,6 +82,7 @@ def run_analysis(email_data):
         )
         all_findings.extend(ai_findings)
         content_score = ai_score*0.3+payload_score*0.7 # Weighted combination to balance structural and semantic insights
+        print(f"[BACKEND LOG] CONTENT: Content final Score: {content_score}")
 
     # STAGE 4: Final Weighted Calculation
     print("\n[BACKEND LOG] ENGINE: Final Aggregation (Weights)")

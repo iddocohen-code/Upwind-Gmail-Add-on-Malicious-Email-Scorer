@@ -12,33 +12,35 @@ def get_score(sender, ip, auth_results):
         return 0, ["Invalid sender format detected."]
 
     print(f"\n[BACKEND LOG] AUTH: Starting technical scan for {domain}")
-    spf_score, dkim_score, dmarc_score = 0, 0, 0
+    spf_score, dkim_score, dmarc_score = 100, 100, 100
     findings = []
 
-    # 1. SPF Check
+    # 1. SPF (Sender Policy Framework) Check  
+    # Allows a domain owner to specify which mail servers are authorized to send emails on their behalf
     txt_records = get_dns_txt_records(domain)
     print(f"[BACKEND LOG] AUTH: Found DNS TXT records: {txt_records}")
     spf_record = next((rec for rec in txt_records if "v=spf1" in rec), None)
     
-    if spf_record:
-        print(f"[BACKEND LOG] AUTH: SPF Record found: {spf_record}")
-        if check_ip_in_spf(spf_record, ip) or "all" in spf_record:
-            spf_score = 100
-        else:
-            spf_score = 50
-            findings.append("SPF: The sender server is not authorized by the domain's DNS.")
+    if not spf_record:
+        findings.append(findings.append("SPF: No authorized server record found for this domain."))
+        spf_score -= 50
     else:
-        findings.append("SPF: No authorized server record found for this domain.")
+        print(f"[BACKEND LOG] AUTH: SPF Record found: {spf_record}")
+        if not check_ip_in_spf(spf_record, ip):
+            findings.append("SPF: The sender server is not authorized by the domain's DNS.")
+            spf_score -= 100
 
-    # 2. DKIM Alignment (Using Relaxed Alignment)
+        
+
+    # 2. DKIM Alignment - checking for alignment between  the Digital signature and the sender's domain family
     dkim_pass = check_dkim_alignment(auth_results, domain)
     print(f"[BACKEND LOG] AUTH: DKIM Alignment: {'SUCCESS' if dkim_pass else 'FAILED'}")
-    if dkim_pass:
-        dkim_score = 100
-    else:
+    if not dkim_pass:
+        dkim_score -= 100
         findings.append("DKIM: Digital signature is missing or misaligned with the sender's domain family.")
 
-    # 3. DMARC Discovery (Including Root Domain Inheritance)
+    # 3. DMARC Discovery 
+    # Technical policy that tells email servers how to handle messages that fail SPF or DKIM check
     root_domain = get_registered_domain(domain)
     dmarc_targets = [domain, root_domain]
     dmarc_found = False
@@ -49,17 +51,16 @@ def get_score(sender, ip, auth_results):
         if dmarc_records:
             dmarc_found = True
             print(f"[BACKEND LOG] AUTH: DMARC record discovered for {target}")
-            if any("p=reject" in r or "p=quarantine" in r for r in dmarc_records):
-                dmarc_score = 100
-            else:
-                dmarc_score = 70
+            if not any("p=reject" in r or "p=quarantine" in r for r in dmarc_records):
+                dmarc_score -= 10
                 findings.append("DMARC: The domain uses a weak security policy (p=none) allowing spoofing.")
             break
     
     if not dmarc_found:
+        dmarc_score -= 30
         print("[BACKEND LOG] AUTH: No DMARC policy found.")
         findings.append("DMARC: No global security policy was found for this domain.")
 
-    final_auth_score = (spf_score * 0.3) + (dkim_score * 0.4) + (dmarc_score * 0.3)
+    final_auth_score = (spf_score * 0.35) + (dkim_score * 0.35) + (dmarc_score * 0.3)
     print(f"[BACKEND LOG] AUTH: Final module score: {final_auth_score}")
     return final_auth_score, findings
