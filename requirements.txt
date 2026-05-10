@@ -1,0 +1,14 @@
+# Web Server
+Flask==3.0.3
+Flask-Cors==4.0.1
+gunicorn==22.0.0
+python-dotenv==1.0.1
+
+# Network & APIs
+requests==2.31.0
+dnspython==2.6.1
+python-whois==0.8.0
+tldextract==5.1.2
+
+# Security & AI
+google-genai==0.3.0
