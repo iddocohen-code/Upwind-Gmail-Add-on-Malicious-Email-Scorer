@@ -1,5 +1,7 @@
 # main.py
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from dotenv import load_dotenv
 # Load environment variables from .env file
 # local run only, in production these should be set securely in the environment
