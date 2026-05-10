@@ -77,10 +77,11 @@ def run_analysis(email_data):
     else:
         # Proceed with semantic AI analysis
         print(f"\n[BACKEND LOG] ENGINE: Payloads passed Gatekeeper. Initiating AI...")
-        content_score, ai_findings = content.evaluate_ai_and_finalize(
+        ai_score, ai_findings = content.evaluate_ai_and_finalize(
             body_text, payload_score, payload_findings, auth_score
         )
         all_findings.extend(ai_findings)
+        content_score = ai_score*0.3+payload_score*0.7 # Weighted combination to balance structural and semantic insights
 
     # STAGE 4: Final Weighted Calculation
     print("\n[BACKEND LOG] ENGINE: Final Aggregation (Weights)")
