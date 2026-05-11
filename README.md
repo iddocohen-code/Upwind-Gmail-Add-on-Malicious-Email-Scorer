@@ -73,37 +73,32 @@ PORT=5001
 Note: Port 5001 avoids conflicts with macOS AirPlay on port 5000.
 
 ### 3. Backend Setup (Local)
-# 1. Create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate
 
-# 2. Install dependencies
+1. Install dependencies
 pip install -r requirements.txt
 
-# 3. Launch the server
+2. Launch the server
 python src/main.py
 
-### 4. Exposing the Backend (The Tunnel)
+3. Exposing the Backend (The Tunnel)
 Google Apps Script requires an HTTPS public URL. For local demos:
 ssh -R 80:localhost:5001 nokey@localhost.run
 Copy the provided HTTPS URL.
 
-### 5. Gmail Add-on Deployment (Frontend)
-1. Open Google Apps Script and create a new project.
-2. Paste the content of frontend/code.gs.
-3. In appsscript.json, ensure the scopes match the provided file in this repo.
-4. Update the API_URL variable in code.gs with your HTTPS tunnel/production URL.
-5. Click Deploy > Test Deployments and install the Add-on to your Gmail account.
-
-### 6. Verification & Health Check
-Verify the backend independently:
-curl -s http://127.0.0.1:5001/analyze -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"sender":"test@example.com","subject":"Hello","body":"Test content","ip":"0.0.0.0"}'
-
-### 7. Optional: Automated Tests
-python tests/test_suite.py
+4. Gmail Add-on Deployment (Frontend)
+* Open Google Apps Script and create a new project.
+* Paste the content of frontend/code.gs.
+* Update the API_URL variable in code.gs with your HTTPS tunnel/production URL.
+* Click Deploy > Test Deployments and install the Add-on to your Gmail account.
 
 ## Production Deployment
-The repository includes a Procfile for Railway/Heroku:
+The repository includes a Procfile for Railway:
 web: gunicorn --chdir src main:app
+
+## Summary & Future Roadmap
+This project was developed as a hands-on exploration of cloud security and backend orchestration. As one of my first major security-focused projects, it served as a practical laboratory for learning how to bridge frontend environments (Google Apps Script) with scalable security logic in Python.
+
+**Future improvements I’m considering:**
+* **Optimizing "Veto" Logic:** Refining the early-mitigation phase to achieve near-zero runtime for known threats, ensuring faster termination of malicious requests.
+* **Full-Stack Parallelization:** Extending asynchronous execution (AsyncIO/Threading) to every component of the pipeline to further reduce overall latency.
+* **Integrated OCR Support:** Implementing Optical Character Recognition (OCR) to "read" and analyze text within image attachments, allowing the engine to detect phishing attempts hidden in non-textual files.
