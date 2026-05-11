@@ -96,7 +96,7 @@ The repository includes a Procfile for Railway:
 web: gunicorn --chdir src main:app
 
 ## Summary & Future Roadmap
-This project was developed as a hands-on exploration of cloud security and backend orchestration. As one of my first major security-focused projects, it served as a practical laboratory for learning how to bridge frontend environments (Google Apps Script) with scalable security logic in Python.
+This project was developed as a hands-on exploration of Mail security and backend orchestration. As one of my first major security-focused projects, it served as a practical laboratory for learning how to bridge frontend environments (Google Apps Script) with scalable security logic in Python.
 
 **Future improvements I’m considering:**
 * **Optimizing "Veto" Logic:** Refining the early-mitigation phase to achieve near-zero runtime for known threats, ensuring faster termination of malicious requests.
