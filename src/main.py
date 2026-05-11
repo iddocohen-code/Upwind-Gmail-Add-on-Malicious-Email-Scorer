@@ -4,7 +4,6 @@ import sys
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
     sys.path.append(current_dir)
-    
 from dotenv import load_dotenv
 # Load environment variables from .env file
 # local run only, in production these should be set securely in the environment

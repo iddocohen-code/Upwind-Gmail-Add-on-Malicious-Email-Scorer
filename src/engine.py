@@ -71,7 +71,7 @@ def run_analysis(email_data):
     if payload_score < 50:
         # Early Exit: Payloads are already highly suspicious, skip AI to save resources.
         print(f"\n[BACKEND LOG] ENGINE: Payload score ({payload_score}) is below threshold. Bypassing AI.")
-        content_score = payload_score
+        content_score = 0
         all_findings.extend(payload_findings)
         all_findings.append("System: Critical payload detected. AI analysis skipped for safety.")
     else:
@@ -95,6 +95,6 @@ def run_analysis(email_data):
 
     return {
         "reliability_score": final_score, 
-        "verdict": "Safe" if final_score > 80 else "Suspicious" if final_score >= 50 else "High Risk", 
+        "verdict": "Safe" if final_score > 80 else "Suspicious" if final_score >= 55 else "High Risk", 
         "findings": all_findings
     }
