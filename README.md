@@ -81,9 +81,10 @@ pip install -r requirements.txt
 python src/main.py
 
 3. Exposing the Backend (The Tunnel)
-Google Apps Script requires an HTTPS public URL. For local demos:
-ssh -R 80:localhost:5001 nokey@localhost.run
-Copy the provided HTTPS URL.
+* Google Apps Script requires an HTTPS public URL. For local demos:
+ssh -o ServerAliveInterval=60 -R 80:127.0.0.1:5001 localhost.run
+* Enter your SSH code
+* Copy the provided HTTPS URL. for example: https://cf1519a37220.lhr.life
 
 4. Gmail Add-on Deployment (Frontend)
 * Open Google Apps Script and create a new project.
