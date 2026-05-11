@@ -81,9 +81,10 @@ pip install -r requirements.txt
 python src/main.py
 
 3. Exposing the Backend (The Tunnel)
-Google Apps Script requires an HTTPS public URL. For local demos:
-ssh -R 80:localhost:5001 nokey@localhost.run
-Copy the provided HTTPS URL.
+* Google Apps Script requires an HTTPS public URL. For local demos:
+ssh -o ServerAliveInterval=60 -R 80:127.0.0.1:5001 localhost.run
+* Enter your SSH code
+* Copy the provided HTTPS URL. for example: https://cf1519a37220.lhr.life
 
 4. Gmail Add-on Deployment (Frontend)
 * Open Google Apps Script and create a new project.
@@ -96,7 +97,7 @@ The repository includes a Procfile for Railway:
 web: gunicorn --chdir src main:app
 
 ## Summary & Future Roadmap
-This project was developed as a hands-on exploration of cloud security and backend orchestration. As one of my first major security-focused projects, it served as a practical laboratory for learning how to bridge frontend environments (Google Apps Script) with scalable security logic in Python.
+This project was developed as a hands-on exploration of Mail security and backend orchestration. As one of my first major security-focused projects, it served as a practical laboratory for learning how to bridge frontend environments (Google Apps Script) with scalable security logic in Python.
 
 **Future improvements I’m considering:**
 * **Optimizing "Veto" Logic:** Refining the early-mitigation phase to achieve near-zero runtime for known threats, ensuring faster termination of malicious requests.
