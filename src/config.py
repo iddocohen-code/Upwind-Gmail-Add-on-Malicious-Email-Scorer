@@ -3,8 +3,8 @@ import os
 # Analysis weights for the final score calculation
 WEIGHTS = {
     "auth": 0.25,
-    "reputation": 0.35,
-    "content": 0.40
+    "reputation": 0.30,
+    "content": 0.45
 }
 
 # VirusTotal API configuration for global threat intelligence and domain data
