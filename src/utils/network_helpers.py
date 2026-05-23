@@ -7,6 +7,7 @@ import socket
 import re
 import tldextract
 from config import VT_API_KEY
+from config import trusted_providers
 
 def get_registered_domain(domain):
     """
@@ -107,7 +108,6 @@ def is_known_infrastructure(ip):
     """
     try:
         host = socket.gethostbyaddr(ip)[0].lower()
-        trusted_providers = ['google', 'outlook', 'microsoft', 'morning', 'greeninvoice', 'harel', 'amazonses', 'mailgun', 'sendgrid', 'zoho', 'hubspot', 'mailchimp']
         return any(provider in host for provider in trusted_providers)
     except Exception:
         return False
