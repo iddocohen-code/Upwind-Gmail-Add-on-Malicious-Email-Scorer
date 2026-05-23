@@ -108,6 +108,7 @@ def is_known_infrastructure(ip):
     """
     try:
         host = socket.gethostbyaddr(ip)[0].lower()
+        print(f"[BACKEND LOG] PTR Lookup for {ip}: {host}")
         return any(provider in host for provider in trusted_providers)
     except Exception:
         return False
