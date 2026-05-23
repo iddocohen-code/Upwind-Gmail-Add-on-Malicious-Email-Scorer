@@ -65,7 +65,8 @@ trusted_providers = [
     'google', 'outlook', 'microsoft', 'zoho', 'protonmail', 'icloud', 'apple',
     
     # --- Cloud & Enterprise Transactional Mail (MTA) ---
-    'amazonses', 'mailgun', 'sendgrid', 'postmarkapp', 'mandrillapp', 'sparkpost',
+    'amazonses', 'mailgun', 'sendgrid', 'postmarkapp', 'mandrillapp', 'sparkpost','iphmx',
+    'mimecast', 'pphosted', 'outbound', 
     
     # --- Marketing & CRM Platforms ---
     'hubspot', 'mailchimp', 'salesforce', 'marketo', 'activecampaign', 'klaviyo', 'intercom',
