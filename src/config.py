@@ -59,6 +59,25 @@ LINK_SHORTENERS = [
     "mcaf.ee", "su.pr", "post.ly", "tiny.pl", "u.to", "v.gd", "yao.li"
 ]
 
+
+trusted_providers = [
+    # --- Big Tech & Core Mail Infrastructure ---
+    'google', 'outlook', 'microsoft', 'zoho', 'protonmail', 'icloud', 'apple',
+    
+    # --- Cloud & Enterprise Transactional Mail (MTA) ---
+    'amazonses', 'mailgun', 'sendgrid', 'postmarkapp', 'mandrillapp', 'sparkpost',
+    
+    # --- Marketing & CRM Platforms ---
+    'hubspot', 'mailchimp', 'salesforce', 'marketo', 'activecampaign', 'klaviyo', 'intercom',
+    
+    # --- Israeli Business, Invoice & SaaS Ecosystem ---
+    'morning', 'greeninvoice', 'icount', 'rivhit', 'ezcount', 'bizibox', 'priority-software', 
+    'harel', 'clal', 'migdal', 'phoenix', 'menora', 'walla',
+    
+    # --- Global Collaboration & Security Tools ---
+    'slack', 'atlassian', 'jira', 'monday', 'zoom', 'github', 'gitlab', 'okta'
+]
+
 # --- GLOBAL BLACKLIST ---
 MALICIOUS_DOMAINS = [
     "secure-login-verify.net", "update-your-account.biz", "claim-reward.ru",
