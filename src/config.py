@@ -73,7 +73,7 @@ trusted_providers = [
     
     # --- Israeli Business, Invoice & SaaS Ecosystem ---
     'morning', 'greeninvoice', 'icount', 'rivhit', 'ezcount', 'bizibox', 'priority-software', 
-    'harel', 'clal', 'migdal', 'phoenix', 'menora', 'walla',
+    'harel', 'clal', 'migdal', 'phoenix', 'menora', 'walla','cellcom', 'bezeq', 'partner',
     
     # --- Global Collaboration & Security Tools ---
     'slack', 'atlassian', 'jira', 'monday', 'zoom', 'github', 'gitlab', 'okta'
