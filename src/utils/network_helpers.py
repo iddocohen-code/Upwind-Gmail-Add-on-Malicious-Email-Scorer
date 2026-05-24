@@ -21,7 +21,7 @@ def get_registered_domain(domain):
 def get_domain_creation_date(domain):
     """
     Retrieves domain creation date using WHOIS with a VirusTotal fallback.
-    Includes Root Domain Fallback (Option 1) to handle subdomains.
+    Includes Root Domain Fallback to handle subdomains.
     """
     def query_whois(target):
         try:
