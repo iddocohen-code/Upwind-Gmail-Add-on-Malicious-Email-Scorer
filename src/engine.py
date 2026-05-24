@@ -95,6 +95,6 @@ def run_analysis(email_data):
 
     return {
         "reliability_score": final_score, 
-        "verdict": "Safe" if final_score > 80 else "Suspicious" if final_score >= 55 else "High Risk", 
+        "verdict": "Safe" if final_score > 85 else "Suspicious" if final_score >= 55 else "High Risk", 
         "findings": all_findings
     }
